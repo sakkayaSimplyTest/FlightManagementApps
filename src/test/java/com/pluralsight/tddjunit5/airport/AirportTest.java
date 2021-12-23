@@ -1,9 +1,6 @@
 package com.pluralsight.tddjunit5.airport;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -116,6 +113,59 @@ class AirportTest {
                         () -> assertEquals(1, businessFlight.getPassengersList().size()),
                         () -> assertEquals(false, businessFlight.removePassenger(john)),
                         () -> assertEquals(1, businessFlight.getPassengersList().size())
+                );
+            }
+        }
+
+    }
+
+
+    @DisplayName("Given there is a premium flight")
+    @Nested
+    class PremiumFlightTest {
+
+        private Flight premiumFlight;
+        private Passenger mike;
+        private Passenger john;
+
+        @BeforeEach
+        void setUp() {
+            premiumFlight = new PremiumFlight("3");
+            mike = new Passenger("Mike", false);
+            john = new Passenger("John", true);
+        }
+
+        @Nested
+        @DisplayName("When we have a usual passenger")
+        class UsualPassenger {
+
+            @Test
+            @DisplayName("Then you cannot add or remove him from a premium flight")
+            public void testPremiumFlightUsualPassenger() {
+
+                assertAll("Verify all conditions for a usual passenger and a premium flight",
+                        () -> assertEquals(false, premiumFlight.addPassenger(mike)),
+                        () -> assertEquals(0, premiumFlight.getPassengersList().size()),
+                        () -> assertEquals(false, premiumFlight.removePassenger(mike)),
+                        () -> assertEquals(0, premiumFlight.getPassengersList().size())
+                );
+
+            }
+        }
+
+        @Nested
+        @DisplayName("When we have a VIP passenger")
+        class VipPassenger {
+
+            @Test
+//            @Disabled
+            @DisplayName("Then you can add and remove him from a premium flight")
+            public void testPremiumFlightVipPassenger() {
+                assertAll("Verify all conditions for a VIP passenger and a premium flight",
+                        () -> assertEquals(true, premiumFlight.addPassenger(john)),
+                        () -> assertEquals(1, premiumFlight.getPassengersList().size()),
+                        () -> assertEquals(true, premiumFlight.removePassenger(john)),
+                        () -> assertEquals(0, premiumFlight.getPassengersList().size())
                 );
             }
         }
