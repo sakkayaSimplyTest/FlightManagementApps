@@ -1,6 +1,6 @@
 package com.pluralsight.tddjunit5.airport;
 
-public class BusinessFlight extends Flight{
+public class BusinessFlight extends Flight {
 
     public BusinessFlight(String id) {
         super(id);
@@ -9,7 +9,7 @@ public class BusinessFlight extends Flight{
     @Override
     public boolean addPassenger(Passenger passenger) {
         if (passenger.isVip()) {
-            return passengerSet.add(passenger);
+            return passengersSet.add(passenger);
         }
         return false;
     }
@@ -18,4 +18,5 @@ public class BusinessFlight extends Flight{
     public boolean removePassenger(Passenger passenger) {
         return false;
     }
+
 }
