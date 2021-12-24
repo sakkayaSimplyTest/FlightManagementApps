@@ -1,13 +1,11 @@
 package com.pluralsight.tddjunit5.airport;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public abstract class Flight {
 
 	private String id;
-	List<Passenger> passengersList = new ArrayList<Passenger>();
+	Set<Passenger> passengerSet = new HashSet<>();
 
 
 	public Flight(String id) {
@@ -18,8 +16,8 @@ public abstract class Flight {
 		return id;
 	}
 
-	public List<Passenger> getPassengersList() {
-		return Collections.unmodifiableList(passengersList);
+	public Set<Passenger> getPassengersSet() {
+		return Collections.unmodifiableSet(passengerSet);
 	}
 
 
