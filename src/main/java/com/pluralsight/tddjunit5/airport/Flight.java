@@ -5,8 +5,8 @@ import java.util.*;
 public abstract class Flight {
 
 	private String id;
+	private int distance;
 	Set<Passenger> passengerSet = new HashSet<>();
-
 
 	public Flight(String id) {
 		this.id = id;
@@ -14,6 +14,14 @@ public abstract class Flight {
 
 	public String getId() {
 		return id;
+	}
+
+	public int getDistance() {
+		return distance;
+	}
+
+	public void setDistance(int distance) {
+		this.distance = distance;
 	}
 
 	public Set<Passenger> getPassengersSet() {
